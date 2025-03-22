@@ -102,3 +102,59 @@ print(s1.evaluer(2))
 s2 = Sinusoide(21, 34, 8)
 print(s2)
 print(s2.evaluer(5))
+
+# 3
+class Etudiant:
+    def __init__(self, id, nom, notes=None, annee_naissance=2009):
+        self.__id = id
+        self.__nom = nom
+        self.__notes = notes
+        self.__annee_naissance = annee_naissance
+        self.notes = [notes for notes in self.__notes if 0 <= notes <= 20]
+
+    @property
+    def get_nom(self):
+        return self.__nom
+
+    @get_nom.setter
+    def get_nom(self, nom):
+        if nom == "":
+            nom = "Julia"
+            self.__nom = nom
+
+    @property
+    def get_annee_naissance(self):
+        return self.__annee_naissance
+    @get_annee_naissance.setter
+    def get_annee_naissance(self, annee_naissance):
+        if not(0 <= annee_naissance <= 2025):
+            annee_naissance = 2009
+            self.__annee_naissance = annee_naissance
+    @property
+    def get_notes(self):
+        return self.__notes
+    @get_notes.setter
+    def get_notes(self, notes):
+        if 0 <= notes <= 20:
+            self.__notes = notes
+        else: self.__notes = 10
+
+    def get_moyenne(self):
+        if len(self.notes) == 0:
+            return 0
+        else:
+            return sum(self.notes) / len(self.notes)
+    def get_age(self):
+        return 2025 - self.__annee_naissance
+
+etu1 = Etudiant(1,"Mike",notes=[17,20, 8],annee_naissance=2006)
+print(etu1.get_moyenne())
+print(etu1.get_age())
+etu2 = Etudiant(2, "Justin", notes=[16,2, 13,18],annee_naissance=1988)
+print(etu2.get_moyenne())
+print(etu2.get_age())
+etu3 = Etudiant(3,"Juliette", notes=[20,3,8,12], annee_naissance=1657)
+print(etu3.get_moyenne())
+print(etu3.get_age())
+
+
